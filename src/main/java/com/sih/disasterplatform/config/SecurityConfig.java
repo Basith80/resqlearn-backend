@@ -60,7 +60,9 @@ public class SecurityConfig {
                 "http://localhost:3000",
                 "http://localhost:3001",
                 "http://localhost:3002",
-                "http://localhost:3003"
+                "http://localhost:3003",
+                "https://resqlearn-frontend.vercel.app",
+                "https://resqlearn-frontend-git-main-basith80s-projects.vercel.app"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));

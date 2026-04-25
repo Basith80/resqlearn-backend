@@ -1,14 +1,10 @@
-# Use Java 17
-FROM eclipse-temurin:17-jdk-alpine
-
-# Set working folder inside container
+FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
+COPY . .
+RUN ./mvnw clean package -DskipTests
 
-# Copy our built JAR into the container
-COPY target/disasterplatform-0.0.1-SNAPSHOT.jar app.jar
-
-# Open port 8080
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/disasterplatform-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Command to run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
